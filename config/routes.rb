@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  post "/signup", to: "users#create", as: "new_user_registration"
+  root "homes#index"
+
+  get "/login", to: "sessions#login", as: "login"
+  post "/login", to: "sessions#create", as: "new_user_session"
+  delete "/logout", to: "sessions#destroy", as: "logout"
+
+  post "/signup", to: "users#register", as: "new_user_registration"
   get "/signup", to: "users#new", as: "signup"
 
   resources :users, expect: [ :create, :new ]
-
-  get "up" => "rails/health#show", as: :rails_health_check
 end

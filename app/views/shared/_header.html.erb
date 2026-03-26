@@ -1,0 +1,40 @@
+<nav class="bg-white border-b shadow-sm">
+  <div class="max-w-7x1 mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-4">
+      <%# <span class="text-xl font-bold text-gray-800">📊 DocSystem</span> %>
+
+      <div class="hidden md:flex items-center gap-6 ml-10">
+        <%= link_to "Dashboard", root_path,
+          class: "text-gray-600 hover:text-blue-600 font-medium transition" %>
+
+        <%= link_to "Usuarios", users_path,
+          class: "text-gray-600 hover:text-blue-600 font-medium transition" %>
+
+        <%= link_to "Documentos", "#",
+          class: "text-gray-600 hover:text-blue-600 font-medium transition" %>
+
+        <%= link_to "Categorías", "#",
+          class: "text-gray-600 hover:text-blue-600 font-medium transition" %>
+      </div>
+    </div>
+
+    <!-- User Menu -->
+    <div class="flex items-center gap-4">
+
+      <!-- Nombre usuario -->
+      <span class="text-gray-700 text-sm hidden sm:block">
+        <%# 👋 <%= current_user&.name || "Usuario" %>
+        <%= session[:user_id]%>
+      </span>
+
+      <!-- Botón logout -->
+      <%= button_to "Salir", logout_path,
+        method: :delete,
+        class: "bg-red-500 hover:bg-red-400 text-white px-4 py-2 rounded-lg text-sm transition" %>
+
+    </div>
+
+  </div>
+</nav>
