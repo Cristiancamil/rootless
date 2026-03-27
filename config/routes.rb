@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
-  root "homes#index"
+  # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- #
 
-  get "/login", to: "sessions#login", as: "login"
-  post "/login", to: "sessions#create", as: "new_user_session"
-  delete "/logout", to: "sessions#destroy", as: "logout"
+  # Page open app
+  root "sessions#login"
+  resources :sessions
+  # Login, create session and logout
+  # get "/login", to: "sessions#login", as: "login"
+  # post "/login", to: "sessions#create", as: "new_user_session"
+  # delete "/logout", to: "sessions#destroy", as: "logout"
 
-  post "/signup", to: "users#register", as: "new_user_registration"
+  # Register
   get "/signup", to: "users#new", as: "signup"
+  post "/signup", to: "users#create", as: "register"
 
-  resources :users, expect: [ :create, :new ]
+  # Home page
+  get "/home", to: "homes#index", as: "home"
+
+  # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- #
+
+  # Routes users controllers
+  # resources :users, expect: [ :create, :new ]
 end

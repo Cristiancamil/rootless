@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[ login create ]
+
   def login
   end
 
@@ -7,15 +9,15 @@ class SessionsController < ApplicationController
 
     if @user.present? && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Login successfully."
+      redirect_to home_path, notice: "Login successfully."
     else
-      redirect_to login_path, notice: "Email or password incorrect."
+      redirect_to root_path, notice: "Email or password incorrect."
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path, notice: "Logout successfully"
+    redirect_to root_path, notice: "Logout successfully"
   end
 
   private

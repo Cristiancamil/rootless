@@ -8,3 +8,11 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ @import "tailwindcss";
+
+@source "../../views/**/*.{erb,rb,js}";
+
+@theme {
+  --color-green-400: oklch(72.3% .219 149.579);
+}
