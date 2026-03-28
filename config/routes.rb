@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
-  # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- #
+  # Página root
+  root "sessions#new"
 
-  # Page open app
-  root "sessions#login"
-  resources :sessions
-  # Login, create session and logout
-  # get "/login", to: "sessions#login", as: "login"
-  # post "/login", to: "sessions#create", as: "new_user_session"
-  # delete "/logout", to: "sessions#destroy", as: "logout"
+  # Autenticación
+  get "login", to: "sessions#new", as: "login"
+  post "login", to: "sessions#create", as: "new_user_session"
+  delete "logout", to: "sessions#destroy", as: "logout"
 
-  # Register
+  # Registro
   get "/signup", to: "users#new", as: "signup"
   post "/signup", to: "users#create", as: "register"
 
-  # Home page
+  # Página principal
   get "/home", to: "homes#index", as: "home"
 
-  # -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- #
-
-  # Routes users controllers
-  # resources :users, expect: [ :create, :new ]
+  # CRUD usuarios (sin signup)
+  resources :users, except: [ :new, :create ]
 end
